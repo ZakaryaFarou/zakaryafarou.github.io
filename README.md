@@ -1,19 +1,21 @@
-# Zakarya Farou — Academic Website
+# Zakarya Farou — Academic Website V4
 
-Static website for GitHub Pages. No build step is required.
+Static GitHub Pages website for Zakarya Farou, Assistant Professor in Data Science and Engineering at ELTE.
 
-## Deploy
+## Pages
+- Home
+- Research
+- Publications
+- Projects
+- Teaching & Supervision
+- Academic Activities
+- About
+- CV
+- Collaborate
 
-1. Put all files in the root of `zakaryafarou.github.io`.
-2. In GitHub: Settings → Pages.
-3. Under Build and deployment, choose **Deploy from a branch**.
-4. Select `main` and `/ (root)`, then Save.
-5. GitHub Pages will publish the site at `https://zakaryafarou.github.io/`.
+## Assets
+- `assets/images/zakarya-farou.jpg` — supplied professional profile photo
+- `data/publications.json` — publication data
 
-## Update publications
-
-Edit `data/publications.json`. The Publications page loads it automatically.
-
-## Important
-
-Publication and profile metadata should be periodically reconciled with ELTE, ORCID, publisher pages, DOI records, MTMT and Google Scholar. Do not add unverified project claims or links.
+## Deployment
+This site is plain HTML/CSS/JavaScript and can be deployed directly through GitHub Pages from the `main` branch and repository root.
