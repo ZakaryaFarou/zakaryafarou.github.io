@@ -1,4 +1,7 @@
-const list=document.getElementById('pubs');let pubs=[];let current='all';
+let pubs=[];
+const list=document.querySelector('#pub-list');
+const count=document.querySelector('#pub-count');
+const filters=document.querySelector('#filters');
+function render(){const active=document.querySelector('.filter.active')?.dataset.filter||'All';const shown=pubs.filter(p=>active==='All'||p.year==active||p.type===active||p.themes.includes(active));count.textContent=`${shown.length} publication${shown.length===1?'':'s'}`;list.innerHTML=shown.map(p=>`<article class="pub"><div class="pub-year">${p.year}</div><div><h2>${p.title}</h2><div class="authors">${p.authors}</div><div class="venue">${p.venue}</div><div class="tags">${p.themes.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div><div class="pub-links">${Object.entries(p.links||{}).map(([k,v])=>`<a href="${v}" target="_blank" rel="noopener">${k.toUpperCase()} ↗</a>`).join('')}</div></article>`).join('')}
 fetch('data/publications.json').then(r=>r.json()).then(d=>{pubs=d;render()});
-function render(){list.innerHTML='';pubs.filter(p=>current==='all'||p.themes.includes(current)).sort((a,b)=>b.year-a.year).forEach(p=>{const el=document.createElement('article');el.className='pub';el.innerHTML=`<div class="pub-year">${p.year}</div><div class="pub-body"><div class="paper-meta">${p.type.toUpperCase()} ${p.selected?' · SELECTED':''}</div><h2>${p.title}</h2><p class="authors">${p.authors.join(', ')}</p><p>${p.venue}</p><div class="tags">${p.themes.map(t=>`<span>${t}</span>`).join('')}</div><div class="pub-links">${p.url?`<a href="${p.url}">${p.doi?'DOI / PAPER ↗':'PAPER ↗'}</a>`:''}${p.doi?`<span>DOI: ${p.doi}</span>`:''}</div></div>`;list.appendChild(el)})}
-document.querySelectorAll('.filter').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));b.classList.add('active');current=b.dataset.filter;render()}));
+filters?.addEventListener('click',e=>{if(!e.target.classList.contains('filter'))return;document.querySelectorAll('.filter').forEach(x=>x.classList.remove('active'));e.target.classList.add('active');render()});
