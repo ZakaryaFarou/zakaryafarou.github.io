@@ -1,4 +1,27 @@
+// Theme toggle — runs immediately so saved preference applies before first paint
+(function () {
+  try {
+    var saved = localStorage.getItem('theme');
+    if (saved) document.documentElement.setAttribute('data-theme', saved);
+  } catch (e) {}
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+  // Theme toggle button
+  const themeToggle = document.querySelector('.theme-toggle');
+  const root = document.documentElement;
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme');
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      // Determine the effective current theme, then flip it
+      const isDark = current === 'dark' || (!current && prefersDark);
+      const next = isDark ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('theme', next); } catch (e) {}
+    });
+  }
+
   // Active nav state
   const path = location.pathname.split('/').pop() || 'index.html';
   document.querySelectorAll('nav a').forEach(a => {
