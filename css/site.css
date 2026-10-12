@@ -84,3 +84,6 @@ nav .cta{margin-top:6px;align-self:flex-start}
 :root[data-theme="dark"] .callout .button{background:#fff;color:#10131a;border-color:#fff}
 :root[data-theme="dark"] .pub.selected{background:linear-gradient(90deg,rgba(123,143,232,.15),transparent)}
 :root[data-theme="dark"] .filter.active{background:var(--accent);border-color:var(--accent)}
+/* Research showcase — full-bleed dark canvas section */
+.research-showcase{background:#111318;overflow:hidden;margin:0;padding:0;display:block}
+.research-showcase canvas{display:block;width:100%;vertical-align:top}
